@@ -1,6 +1,6 @@
 # Sistema de Gerenciamento: Vendas de Produtos Higiênicos de Bebês (VPHBs)
 
-- PROJETO FINAL PARA AVALIAÇÃO DA DISPLINA DE PROGRAMAÇÃO PARA INTERNET -
+   - PROJETO FINAL PARA AVALIAÇÃO DA DISPLINA DE PROGRAMAÇÃO PARA INTERNET -
 
   * Aluna: Júlia Medeiros do Nascimento
   * Matrícula: 20201214010028

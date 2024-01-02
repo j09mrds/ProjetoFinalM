@@ -19,10 +19,6 @@ Sistema Operacional: Windows 11.
 
 Linguagem de back-end: TypeScript;
 
-Liguagem de front-end: JavaScript, Html e CSS;
-
-Banco de dados: 
-
 Matriz: CRUD (Creat, Remove, Update, delete);
 
 IDE: VSCode;

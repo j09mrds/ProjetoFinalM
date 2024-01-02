@@ -41,6 +41,4 @@ Existindo uma visualização simples e objetiva para facilitar o uso, o usuário
 
 * Criação de login para entrada
 * Pesquisa do produto desejado
-* Visualização de disponibilidade
 * Seleção do produto
-* Preenchimento dos requisitos para compra e venda

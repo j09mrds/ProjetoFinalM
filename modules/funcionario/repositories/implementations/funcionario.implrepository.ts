@@ -1,46 +1,33 @@
-// funcionarioRepository.ts
-
 import { PrismaClient } from "@prisma/client";
-import { FuncionarioDto } from '../../dtos/funcionario.dto';
+import { FuncionarioEntity } from '../../entities/funcionario.entity';
+import { FuncionarioMapping } from '../../mappings/funcionario.mapping';
 import { FuncionarioRepository } from '../funcionario.repository';
 
 const prisma = new PrismaClient();
 
 export class FuncionarioRepositoryImplementation implements FuncionarioRepository {
-  async createFuncionario(funcionario: Omit<FuncionarioDto, 'id'>): Promise<FuncionarioDto> {
+  async createFuncionario(funcionario: Omit<FuncionarioEntity, 'id'>): Promise<FuncionarioEntity> {
     const createdFuncionario = await prisma.tbFuncionario.create({
-      data: funcionario
+      data: FuncionarioMapping.toDto(funcionario)
     });
-    return createdFuncionario;
+    return FuncionarioMapping.toEntity(createdFuncionario);
   }
 
-async getFuncionario(id: number): Promise<FuncionarioDto> {
-  const funcionario = await prisma.tbFuncionario.findUnique({
-    where: { id },
-    select: {
-      id: true,
-      nome: true,
-      senha: true, // Adicione a senha aqui se você quiser retorná-la
-      tbVendas: {
-        select: {
-          id: true,
-          funcionarioId: true,
-          tbItemVenda: true // substitua tbItemVenda pelo nome correto do relacionamento em seu modelo Prisma
-        }
-      }
-    }
-  });
+  async getFuncionario(id: number): Promise<FuncionarioEntity> {
+    const funcionario = await prisma.tbFuncionario.findUnique({
+      where: { id },
+    });
 
-  if (!funcionario) throw new Error('Funcionario not found');
-  return funcionario;
-}
+    if (!funcionario) throw new Error('Funcionario not found');
+    return FuncionarioMapping.toEntity(funcionario);
+  }
 
-  async updateFuncionario(id: number, funcionario: Omit<FuncionarioDto, 'id'>): Promise<FuncionarioDto> {
+  async updateFuncionario(id: number, funcionario: Omit<FuncionarioEntity, 'id'>): Promise<FuncionarioEntity> {
     const updatedFuncionario = await prisma.tbFuncionario.update({
       where: { id },
-      data: funcionario
+      data: FuncionarioMapping.toDto(funcionario)
     });
-    return updatedFuncionario;
+    return FuncionarioMapping.toEntity(updatedFuncionario);
   }
 
   async deleteFuncionario(id: number): Promise<void> {
@@ -48,22 +35,9 @@ async getFuncionario(id: number): Promise<FuncionarioDto> {
       where: { id }
     });
   }
-  async getAllFuncionarios(): Promise<FuncionarioDto[]> {
-    const funcionarios = await prisma.tbFuncionario.findMany({
-      select: {
-        id: true,
-        nome: true,
-        senha: true, // Adicione a senha aqui se você quiser retorná-la
-        tbVendas: {
-          select: {
-            id: true,
-            funcionarioId: true,
-            tbItemVenda: true // substitua tbItemVenda pelo nome correto do relacionamento em seu modelo Prisma
-          }
-        }
-      }
-    });
-  
-    return funcionarios;
+
+  async getAllFuncionarios(): Promise<FuncionarioEntity[]> {
+    const funcionarios = await prisma.tbFuncionario.findMany();
+    return funcionarios.map(FuncionarioMapping.toEntity);
   }
 }

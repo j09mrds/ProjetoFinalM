@@ -1,16 +1,17 @@
 import { MarcaEntity } from "../entities/marca.entity";
-import { tbMarca, Prisma } from "@prisma/client";
+import { MarcaDto } from "../dtos/marca.dtos";
 
 export class MarcaPrismaMapping {
-  static to(marca: tbMarca): MarcaEntity {
+  static to(marca: MarcaDto): MarcaEntity {
     return {
       id: marca.id,
       nome: marca.nome,
     }
   }
 
-  static from(marca: MarcaEntity): Prisma.tbMarcaCreateInput {
+  static from(marca: MarcaEntity): MarcaDto {
     return {
+      id: marca.id, 
       nome: marca.nome,
     }
   }

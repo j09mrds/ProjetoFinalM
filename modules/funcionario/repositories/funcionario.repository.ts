@@ -1,9 +1,9 @@
-import { FuncionarioDto } from '../dtos/funcionario.dto';
+import { FuncionarioEntity } from '../entities/funcionario.entity';
 
 export interface FuncionarioRepository {
-  createFuncionario(funcionario: Omit<FuncionarioDto, 'id'>): Promise<FuncionarioDto>;
-  getFuncionario(id: number): Promise<FuncionarioDto>;
-  updateFuncionario(id: number, funcionario: Omit<FuncionarioDto, 'id'>): Promise<FuncionarioDto>;
+  createFuncionario(funcionario: Omit<FuncionarioEntity, 'id'>): Promise<FuncionarioEntity>;
+  getFuncionario(id: number): Promise<FuncionarioEntity>;
+  updateFuncionario(id: number, funcionario: Omit<FuncionarioEntity, 'id'>): Promise<FuncionarioEntity>;
   deleteFuncionario(id: number): Promise<void>;
-  getAllFuncionarios(): Promise<FuncionarioDto[]>;
+  getAllFuncionarios(): Promise<FuncionarioEntity[]>;
 }

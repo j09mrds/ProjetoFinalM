@@ -3,7 +3,9 @@ import { GetFuncionarioController } from "./controller/get.funcionario.controlle
 import { UpdateFuncionarioController } from "./controller/update.get.funcionario.controller";
 import { DeleteFuncionarioController } from "./controller/delete.funcionario.controller";
 import { GetAllFuncionarioController } from "./controller/getall.funcionario.controller";
+import { AuthController } from "./controller/auth.funcionario.controller";
 
+import { AuthService } from "./services/auth.services";
 import { CreateFuncionarioService } from "./services/create.funcionario.service";
 import { GetFuncionarioService } from "./services/get.funcionario.service";
 import { UpdateFuncionarioService } from "./services/update.funcionario.service";
@@ -29,10 +31,13 @@ const deleteController = new DeleteFuncionarioController(deleteService);
 const getAllService = new GetAllFuncionarioService(repository);
 const getAllController = new GetAllFuncionarioController(getAllService);
 
+const ServiceAuth = new AuthService(repository)
+const ControllerAuth = new AuthController(ServiceAuth)
 export {
   createController,
   getController,
   updateController,
   deleteController,
-  getAllController
+  getAllController,
+  ControllerAuth
 };

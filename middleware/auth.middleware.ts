@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken';
-import { FuncionarioService } from '../funcionario';
-
+import { FuncionarioRepositoryImplementation } from '../modules/funcionario/repositories/implementations/funcionario.implrepository';
 export const validateJWT = async (req, res, next) => {
   const authHeader = req.headers.authorization;
+  const funcionariorepo = new FuncionarioRepositoryImplementation()
 
   if (!authHeader) {
     return res.status(401).send({ error: 'No token provided' });
@@ -23,7 +23,7 @@ export const validateJWT = async (req, res, next) => {
   jwt.verify(token, 'pgZkdPLNzm3uSgFmjgfz$x;EuM;uCP', async (err, decoded) => {
     if (err) return res.status(401).send({ error: 'Token invalid' });
 
-    const funcionario = await FuncionarioService.getFuncionario(decoded.id);
+    const funcionario = await funcionariorepo.getFuncionario(decoded.id);
 
     if (!funcionario) {
       return res.status(401).send({ error: 'Invalid user' });

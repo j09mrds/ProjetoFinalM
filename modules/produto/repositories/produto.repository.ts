@@ -1,4 +1,4 @@
-// IProdutoRepository.ts
+
 import { ProdutoDto } from "../dtos/produto.dto";
 
 export interface ProdutoRepository {

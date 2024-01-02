@@ -1,5 +1,6 @@
-export interface FuncionarioEntity {
-    id: number;
-    nome?: string;
-    senha: string;
-  }
+export type FuncionarioEntity = {
+  id?: number;
+  nome: string; 
+  senha: string;
+  
+};

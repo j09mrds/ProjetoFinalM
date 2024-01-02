@@ -29,9 +29,8 @@ model tbItemVenda {
   quantidade Int
   preco     Float
   tbProdutos tbProdutos  @relation(fields: [produtoId], references: [id])
-  tbVendas   tbVendas    @relation(fields: [vendaId], references: [id])
+  tbVendas   tbVendas    @relation(fields: [vendaId], references: [id], onDelete: Cascade)
 }
-
 model tbMarca {
   id        Int          @id @default(autoincrement())
   nome      String        @unique

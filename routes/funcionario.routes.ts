@@ -3,13 +3,16 @@ import {
   getController,
   updateController,
   deleteController,
-  getAllController
+  getAllController,
+  ControllerAuth
   } from "../modules/funcionario";
   import { Router, Request, Response } from "express";
   
   import { validateJWT } from "../middleware/auth.middleware"; 
   const routes = Router();
-  
+  routes.post('/login', async (req: Request, res: Response) => {
+    ControllerAuth.handle(req, res);
+  });
   routes.post('/funcionario', async (req: Request, res: Response) => {
     createController.handle(req, res);
   });

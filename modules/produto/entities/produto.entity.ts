@@ -1,4 +1,4 @@
-// ProdutoEntity.ts
+
 export class ProdutoEntity {
     id: number;
     nome: string;
